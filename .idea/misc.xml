@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Kodch/AndroidStudioProjects/UnitConverter/app/src/main/res/drawable/outline_balance_24.xml" value="0.208" />
+        <entry key="..\:/Users/Kodch/AndroidStudioProjects/UnitConverter/app/src/main/res/drawable/outline_monitor_weight_24.xml" value="0.22" />
+        <entry key="..\:/Users/Kodch/AndroidStudioProjects/UnitConverter/app/src/main/res/drawable/outline_scale_24.xml" value="0.208" />
         <entry key="..\:/Users/Kodch/AndroidStudioProjects/UnitConverter/app/src/main/res/drawable/outline_square_foot_24.xml" value="0.197" />
       </map>
     </option>
