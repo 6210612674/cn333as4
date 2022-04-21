@@ -44,15 +44,15 @@ fun UnitConverter() {
             )
         },
         bottomBar = {
-            UnitCovrterBottomBar(navController)
+            UnitCoverterBottomBar(navController)
         }
     ) {
-        UnitConverterNavHost(navController)
+//        UnitConverterNavHost(navController)
     }
 }
 
 @Composable
-fun UnitCovrterBottomBar(navController: NavController) {
+fun UnitCoverterBottomBar(navController: NavController) {
     val selectedRoute = rememberSaveable { mutableStateOf(Screen.screens.first().route) }
     BottomNavigation {
         Screen.screens.forEach { screen ->
@@ -76,29 +76,29 @@ fun UnitCovrterBottomBar(navController: NavController) {
                         contentDescription = stringResource(id = screen.label)
                     )
                 },
-                alwaysShowLabel = false
+//                alwaysShowLabel = false
             )
         }
     }
 }
 
-@Composable
-fun UnitConverterNavHost(navController: NavHostController) {
-    NavHost(
-        navController = navController,
-        startDestination = Screen.screens.first().route
-    ) {
-        composable(Screen.screens[0].route) {
-            TemperatureConverter()
-        }
-        composable(Screen.screens[1].route) {
-            DistanceConverter()
-        }
-        composable(Screen.screens[2].route) {
-            MassConverter()
-        }
-    }
-}
+//@Composable
+//fun UnitConverterNavHost(navController: NavHostController) {
+//    NavHost(
+//        navController = navController,
+//        startDestination = Screen.screens.first().route
+//    ) {
+//        composable(Screen.screens[0].route) {
+//            TemperatureConverter()
+//        }
+//        composable(Screen.screens[1].route) {
+//            DistanceConverter()
+//        }
+//        composable(Screen.screens[2].route) {
+//            MassConverter()
+//        }
+//    }
+//}
 
 
 @Preview(showBackground = true)
