@@ -17,15 +17,15 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.unitconverter.R
-import com.example.unitconverter.viewmodels.MassViewModel
+import com.example.unitconverter.viewmodels.PressureViewModel
 
 @Composable
-fun MassConverter() {
-    val viewModel: MassViewModel = viewModel()
-    val strKilo = stringResource(id = R.string.kilogram)
-    val strPound = stringResource(id = R.string.pound)
-    val currentValue = viewModel.mass.observeAsState(viewModel.mass.value ?: "")
-    val unit = viewModel.unit.observeAsState(viewModel.unit.value ?: R.string.kilogram)
+fun PressureConverter() {
+    val viewModel: PressureViewModel = viewModel()
+    val strBar = stringResource(id = R.string.bar)
+    val strPSI = stringResource(id = R.string.psi)
+    val currentValue = viewModel.pressure.observeAsState(viewModel.pressure.value ?: "")
+    val unit = viewModel.unit.observeAsState(viewModel.unit.value ?: R.string.bar)
     var result by rememberSaveable { mutableStateOf("") }
 
     val calc = {
@@ -34,14 +34,14 @@ fun MassConverter() {
             ""
         else
             "$temp${
-                if (unit.value == R.string.kilogram)
-                    strPound
-                else strKilo
+                if (unit.value == R.string.bar)
+                    strPSI
+                else strBar
             }"
     }
 
     val enabled by remember(currentValue.value) {
-        mutableStateOf(!viewModel.getMassAsFloat().isNaN())
+        mutableStateOf(!viewModel.getPressureAsFloat().isNaN())
     }
 
     Column(
@@ -63,13 +63,13 @@ fun MassConverter() {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                MassTextField(
+                PressureTextField(
                     distance = currentValue,
                     modifier = Modifier.padding(bottom = 16.dp),
                     callback = calc,
                     viewModel = viewModel
                 )
-                MassScaleButtonGroup(
+                PressureScaleButtonGroup(
                     selected = unit,
                     modifier = Modifier.padding(bottom = 16.dp)
                 ) { resId: Int ->
@@ -108,19 +108,19 @@ fun MassConverter() {
 }
 
 @Composable
-fun MassTextField(
+fun PressureTextField(
     distance: State<String>,
     modifier: Modifier = Modifier,
     callback: () -> Unit,
-    viewModel: MassViewModel
+    viewModel: PressureViewModel
 ) {
     TextField(
         value = distance.value,
         onValueChange = {
-            viewModel.setMass(it)
+            viewModel.setPressure(it)
         },
         placeholder = {
-            Text(text = stringResource(id = R.string.placeholder_mass))
+            Text(text = stringResource(id = R.string.placeholder_pressure))
         },
         modifier = modifier,
         keyboardActions = KeyboardActions(onAny = {
@@ -135,21 +135,21 @@ fun MassTextField(
 }
 
 @Composable
-fun MassScaleButtonGroup(
+fun PressureScaleButtonGroup(
     selected: State<Int>,
     modifier: Modifier = Modifier,
     onClick: (Int) -> Unit
 ) {
     val sel = selected.value
     Row(modifier = modifier) {
-        MassRadioButton(
-            selected = sel == R.string.kilogram,
-            resId = R.string.kilogram,
+        PressureRadioButton(
+            selected = sel == R.string.bar,
+            resId = R.string.bar,
             onClick = onClick
         )
-        MassRadioButton(
-            selected = sel == R.string.pound,
-            resId = R.string.pound,
+        PressureRadioButton(
+            selected = sel == R.string.psi,
+            resId = R.string.psi,
             onClick = onClick,
             modifier = Modifier.padding(start = 16.dp)
         )
@@ -157,7 +157,7 @@ fun MassScaleButtonGroup(
 }
 
 @Composable
-fun MassRadioButton(
+fun PressureRadioButton(
     selected: Boolean,
     resId: Int,
     onClick: (Int) -> Unit,

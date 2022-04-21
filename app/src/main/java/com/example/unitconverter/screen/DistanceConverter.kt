@@ -1,9 +1,7 @@
 package com.example.unitconverter.screen
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
@@ -12,6 +10,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -48,31 +47,62 @@ fun DistanceConverter() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        DistanceTextField(
-            distance = currentValue,
-            modifier = Modifier.padding(bottom = 16.dp),
-            callback = calc,
-            viewModel = viewModel
-        )
-        DistanceScaleButtonGroup(
-            selected = unit,
-            modifier = Modifier.padding(bottom = 16.dp)
-        ) { resId: Int ->
-            viewModel.setUnit(resId)
-        }
-        Button(
-            onClick = calc,
-            enabled = enabled
+        Surface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(15.dp),
+            shape = RoundedCornerShape(20.dp),
+            color = colorResource(id = R.color.magnolia),
+            elevation = 0.dp,
         ) {
-            Text(text = stringResource(id = R.string.convert))
+            Column(
+                modifier = Modifier.padding(15.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                DistanceTextField(
+                    distance = currentValue,
+                    modifier = Modifier.padding(bottom = 16.dp),
+                    callback = calc,
+                    viewModel = viewModel
+                )
+                DistanceScaleButtonGroup(
+                    selected = unit,
+                    modifier = Modifier.padding(bottom = 16.dp)
+                ) { resId: Int ->
+                    viewModel.setUnit(resId)
+                }
+                Button(
+                    onClick = calc,
+                    enabled = enabled
+                ) {
+                    Text(text = stringResource(id = R.string.convert))
+                }
+            }
         }
         if (result.isNotEmpty()) {
-            Text(
-                text = result,
-                style = MaterialTheme.typography.h3
-            )
+            Surface(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(15.dp),
+                shape = RoundedCornerShape(20.dp),
+                color = colorResource(id = R.color.magnolia),
+
+                ) {
+                Column(
+                    modifier = Modifier.padding(15.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        text = result,
+                        style = MaterialTheme.typography.h3
+                    )
+                }
+            }
         }
     }
 }
