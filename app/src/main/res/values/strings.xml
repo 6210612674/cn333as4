@@ -15,4 +15,5 @@
     <string name="kilogram">kg</string>
     <string name="pound">lb</string>
     <string name="placeholder_mass">mass</string>
+    <string name="convert">Convert</string>
 </resources>

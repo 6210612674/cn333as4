@@ -47,7 +47,7 @@ fun UnitConverter() {
             UnitCoverterBottomBar(navController)
         }
     ) {
-//        UnitConverterNavHost(navController)
+        UnitConverterNavHost(navController)
     }
 }
 
@@ -82,23 +82,23 @@ fun UnitCoverterBottomBar(navController: NavController) {
     }
 }
 
-//@Composable
-//fun UnitConverterNavHost(navController: NavHostController) {
-//    NavHost(
-//        navController = navController,
-//        startDestination = Screen.screens.first().route
-//    ) {
-//        composable(Screen.screens[0].route) {
-//            TemperatureConverter()
-//        }
-//        composable(Screen.screens[1].route) {
-//            DistanceConverter()
-//        }
-//        composable(Screen.screens[2].route) {
-//            MassConverter()
-//        }
-//    }
-//}
+@Composable
+fun UnitConverterNavHost(navController: NavHostController) {
+    NavHost(
+        navController = navController,
+        startDestination = Screen.screens.first().route
+    ) {
+        composable(Screen.screens[0].route) {
+            TemperatureConverter()
+        }
+        composable(Screen.screens[1].route) {
+            DistanceConverter()
+        }
+        composable(Screen.screens[2].route) {
+            MassConverter()
+        }
+    }
+}
 
 
 @Preview(showBackground = true)
